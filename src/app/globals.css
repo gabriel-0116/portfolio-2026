@@ -1,5 +1,29 @@
 ﻿@import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at top, rgba(34, 211, 238, 0.08), transparent 22%),
+    linear-gradient(180deg, #050505 0%, #040404 100%);
+  color: white;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.22);
+  color: #fff;
+}
+
+.font-heading {
+  font-family: var(--font-heading), sans-serif;
+}
+
+.font-body {
+  font-family: var(--font-body), sans-serif;
+}
+
 .marquee {
   width: 100%;
   overflow: hidden;

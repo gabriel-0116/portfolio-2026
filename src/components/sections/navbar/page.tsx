@@ -2,58 +2,64 @@
 
 import Link from "next/link";
 import {
-  BriefcaseBusiness,
   FolderGit2,
   Home,
   Mail,
   UserRound,
+  Waypoints,
 } from "lucide-react";
 
 const navItems = [
-  { label: "Home", href: "#home", icon: Home, active: true },
+  { label: "Início", href: "#home", icon: Home },
   { label: "Sobre", href: "#about", icon: UserRound },
   { label: "Projetos", href: "#projects", icon: FolderGit2 },
-  { label: "Serviços", href: "#services", icon: BriefcaseBusiness },
+  { label: "Trajetória", href: "#journey", icon: Waypoints },
   { label: "Contato", href: "#contact", icon: Mail },
 ];
 
 export function Navbar() {
   return (
-    <aside className="fixed left-6 top-1/2 z-50 hidden -translate-y-1/2 lg:block">
-      <div className="flex w-[108px] flex-col items-center rounded-[34px] border border-white/12 bg-[linear-gradient(180deg,rgba(24,24,27,0.92),rgba(10,10,10,0.82))] p-4 shadow-[0_20px_60px_rgba(0,0,0,0.6),0_0_30px_rgba(255,255,255,0.04)] backdrop-blur-2xl">
-        <Link
-          href="#home"
-          aria-label="Ir para o início"
-          className="mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-white/15 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.16),rgba(255,255,255,0.04))] text-base font-semibold text-white shadow-[inset_0_1px_2px_rgba(255,255,255,0.14),0_8px_18px_rgba(0,0,0,0.35)] transition hover:scale-105"
-        >
-          GS
-        </Link>
+    <>
+      <header className="fixed left-0 top-0 z-50 hidden w-full px-6 pt-5 md:px-10 lg:block lg:px-20">
+        <div className="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-white/10 bg-black/55 px-4 py-3 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+          <Link
+            href="#home"
+            className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/[0.07]"
+          >
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-cyan-400/12 text-cyan-300">
+              GS
+            </span>
+            Gabriel Santos
+          </Link>
 
-        <div className="mb-4 h-px w-10 bg-white/12" />
+          <nav className="flex items-center gap-2">
+            {navItems.map(({ label, href }) => (
+              <Link
+                key={label}
+                href={href}
+                className="rounded-full px-4 py-2 text-sm text-white/70 transition hover:bg-white/[0.05] hover:text-white"
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      </header>
 
-        <nav className="flex flex-col items-center gap-4">
-          {navItems.map(({ label, href, icon: Icon, active }) => (
+      <div className="fixed inset-x-0 bottom-5 z-50 px-4 lg:hidden">
+        <nav className="mx-auto flex max-w-max items-center gap-2 rounded-full border border-white/10 bg-black/75 px-3 py-3 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+          {navItems.map(({ label, href, icon: Icon }) => (
             <Link
               key={label}
               href={href}
               aria-label={label}
-              title={label}
-              className={[
-                "group relative flex h-14 w-14 items-center justify-center rounded-full border transition-all duration-300",
-                active
-                  ? "border-white/18 bg-white/12 text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.14),0_10px_22px_rgba(0,0,0,0.3)]"
-                  : "border-white/10 bg-white/[0.03] text-zinc-200 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/10 hover:text-white hover:shadow-[0_10px_24px_rgba(0,0,0,0.3)]",
-              ].join(" ")}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/75 transition hover:border-cyan-400/25 hover:bg-white/[0.06] hover:text-white"
             >
-              <Icon size={20} strokeWidth={1.9} />
-
-              <span className="pointer-events-none absolute left-[calc(100%+12px)] top-1/2 hidden -translate-y-1/2 rounded-full border border-white/10 bg-zinc-900 px-3 py-1 text-xs text-white/90 shadow-lg group-hover:block">
-                {label}
-              </span>
+              <Icon className="h-4 w-4" />
             </Link>
           ))}
         </nav>
       </div>
-    </aside>
+    </>
   );
 }
