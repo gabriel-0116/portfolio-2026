@@ -8,27 +8,23 @@ import {
 
 const contacts = [
   {
-    label: "E-mail",
-    value: "seuemail@gmail.com",
-    href: "mailto:seuemail@gmail.com",
+    value: "E-mail",
+    href: "mailto:devgabrielsantos01@gmail.com",
     icon: Mail,
   },
   {
-    label: "LinkedIn",
-    value: "linkedin.com/in/seu-link",
-    href: "https://www.linkedin.com/in/seu-link",
+    value: "LinkedIn",
+    href: "https://www.linkedin.com/in/devgabrielsantos01",
     icon: Linkedin,
   },
   {
-    label: "GitHub",
-    value: "github.com/seu-user",
-    href: "https://github.com/seu-user",
+    value: "GitHub",
+    href: "https://github.com/gabriel-0116",
     icon: Github,
   },
   {
-    label: "WhatsApp",
-    value: "+55 88 99999-9999",
-    href: "https://wa.me/5588999999999",
+    value: "WhatsApp",
+    href: "https://wa.me/5511972248790",
     icon: MessageCircleMore,
   },
 ];
@@ -50,8 +46,8 @@ export function Contact() {
           </h2>
 
           <p className="max-w-2xl text-base leading-7 text-white/70 md:text-lg">
-            Aberto a oportunidades em desenvolvimento front-end, produtos web e
-            projetos com foco em experiência real de uso.
+            Para propostas, vagas ou projetos, estes são os canais mais rápidos
+            para entrar em contato comigo.
           </p>
         </div>
 
@@ -61,45 +57,36 @@ export function Contact() {
               <p className="text-sm uppercase tracking-[0.2em] text-white/35">
                 Vamos conversar
               </p>
-
-              <h3 className="text-2xl font-semibold text-white">
-                Escolha o canal mais prático
-              </h3>
-
-              <p className="max-w-2xl text-base leading-7 text-white/65">
-                Para propostas, vagas ou projetos, estes são os canais mais
-                rápidos para entrar em contato comigo.
-              </p>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
               {contacts.map((item) => {
                 const Icon = item.icon;
+                const isEmail = item.href.startsWith("mailto:");
 
                 return (
                   <a
-                    key={item.label}
                     href={item.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="group rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-5 transition duration-300 hover:-translate-y-1 hover:border-cyan-400/30 hover:bg-white/[0.05]"
+                    target={isEmail ? undefined : "_blank"}
+                    rel={isEmail ? undefined : "noreferrer"}
+                    className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition duration-300 hover:-translate-y-1 hover:border-cyan-400/30 hover:bg-white/[0.05]"
                   >
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-cyan-400/20 bg-cyan-400/10 text-cyan-300">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.14),transparent_45%)] opacity-0 transition duration-300 group-hover:opacity-100" />
+
+                    <div className="relative flex items-center gap-4">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-cyan-400/20 bg-gradient-to-br from-cyan-400/15 to-sky-500/10 text-cyan-300 shadow-[0_0_24px_rgba(34,211,238,0.12)] transition duration-300 group-hover:scale-105 group-hover:border-cyan-300/40 group-hover:text-cyan-200">
                         <Icon className="h-5 w-5" />
                       </div>
 
-                      <ArrowUpRight className="h-4 w-4 text-white/35 transition duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-cyan-300" />
-                    </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="mt-1 break-all text-sm font-medium text-white/85 md:break-normal md:truncate md:text-[15px]">
+                          {item.value}
+                        </p>
+                      </div>
 
-                    <div className="mt-5 space-y-2">
-                      <p className="text-sm uppercase tracking-[0.18em] text-white/35">
-                        {item.label}
-                      </p>
-
-                      <p className="break-words text-sm leading-6 text-white/80">
-                        {item.value}
-                      </p>
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/35 transition duration-300 group-hover:border-cyan-400/30 group-hover:text-cyan-300">
+                        <ArrowUpRight className="h-4 w-4 transition duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                      </div>
                     </div>
                   </a>
                 );
